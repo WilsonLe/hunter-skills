@@ -5,6 +5,27 @@ description: Efficient daily use of GitHub Copilot CLI for senior engineers. Use
 
 # GitHub Copilot CLI – Efficient Workflow
 
+## Frontmatter Linting (Do This First)
+YAML frontmatter is **strict**. A single extra space can break the skill.
+
+Before committing or publishing:
+```bash
+# Basic sanity check (no output = good)
+python - <<'PY'
+import yaml,sys
+with open('SKILL.md') as f:
+    yaml.safe_load(f.read())
+print('Frontmatter OK')
+PY
+```
+
+Rules to remember:
+- No leading spaces before keys (`name`, `description`)
+- Use spaces, not tabs
+- Keep frontmatter minimal (only `name` and `description`)
+
+---
+
 ## Mental Model
 Treat Copilot CLI as a **team of elite specialists** coordinated by you:
 - One Copilot instance can act as **frontend engineer**
@@ -101,16 +122,28 @@ gh copilot suggest "As a tester, write failing tests for mixed-language carryove
 
 ## When NOT to Use Copilot CLI
 
-- Architectural decisions
-- Cross-repo coordination
-- Security-sensitive logic
-- Complex state machines
+Copilot CLI should not be the *final authority* in situations where:
 
-Use it **inside** the solution, not **for** the solution.
+- **Product or organizational trade‑offs** dominate over code correctness
+- **Cross‑repo or cross‑team coordination** is required
+- **Security, privacy, or compliance** decisions are involved
+- **Ambiguous state machines** where correctness depends on real‑world behavior
+
+In these cases, Copilot may still **propose options**, but you must explicitly review and decide.
 
 ---
 
 ## Golden Rule
-If you wouldn’t delegate the task to a junior engineer **unsupervised**, don’t delegate it to Copilot CLI either.
+Copilot is a **force multiplier**, not a decision owner.
 
-Use it to go faster — not to think less.
+Use Copilot to:
+- Generate competing implementations
+- Surface assumptions
+- Stress‑test ideas from multiple angles
+
+You own:
+- Final intent
+- Risk acceptance
+- Merge decisions
+
+Copilot accelerates thinking — it does not replace judgment.
