@@ -6,11 +6,17 @@ name: github-copilot-cli
 # GitHub Copilot CLI – Efficient Workflow
 
 ## Mental Model
-Treat Copilot CLI as a **junior pair programmer**:
-- It is great at **drafting**, **searching**, and **mechanical refactors**
-- You stay responsible for **intent**, **architecture**, and **final decisions**
+Treat Copilot CLI as a **team of elite specialists** coordinated by you:
+- One Copilot instance can act as **frontend engineer**
+- One as **backend engineer**
+- One as **tester / QA**
+- One as **infrastructure or refactor specialist**
 
-Never ask it to "solve everything". Ask it to do *one concrete step*.
+Copilot is excellent at coding *and* architecture when given clear roles. You act as the **CTO / conductor**:
+- Define goals and constraints
+- Let Copilot instances propose solutions
+- Observe trade‑offs and conflicts
+- Escalate decisions or risks to yourself explicitly
 
 ---
 
