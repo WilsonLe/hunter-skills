@@ -58,10 +58,10 @@ Then iterate toward the fix yourself.
 
 ## Prompting Patterns That Work
 
-### ✅ Good prompts
-- "Draft a minimal fix for X"
-- "Add guards so Y never happens"
-- "Refactor this to be safer, not faster"
+### ✅ Good prompts (role-aware)
+- "As a backend engineer, draft a minimal fix for X"
+- "As a tester, add guards so Y never happens"
+- "As infra, refactor this to be safer, not faster"
 
 ### ❌ Bad prompts
 - "Implement feature X end-to-end"
@@ -70,24 +70,32 @@ Then iterate toward the fix yourself.
 
 ---
 
-## The 3-Step Daily Loop (Recommended)
+## Multi‑Copilot Orchestration Loop (Recommended)
 
-1. **Explore**
+1. **Decompose (CTO)**
+   - State the goal and constraints
+   - Split into FE / BE / QA / Infra concerns
+
+2. **Propose (Copilot roles)**
 ```bash
-gh copilot explain "How does this module interact with Synapse?" --path modules/
+gh copilot suggest "As a backend engineer, propose a minimal fix for mixed-language carryover" --path src/
+
+gh copilot suggest "As a tester, write failing tests for mixed-language carryover" --path tests/
 ```
 
-2. **Draft**
-```bash
-gh copilot suggest "Draft a small change to prevent mixed-language carryover" --path src/
-```
+3. **Cross‑check (Copilot vs Copilot)**
+   - Compare proposals
+   - Look for disagreement or assumptions
 
-3. **Own it**
-- You review
-- You rename things
-- You simplify
+4. **Escalate (to you)**
+   - Surface trade‑offs
+   - Highlight risk
+   - Ask for decision
 
-Copilot drafts. You decide.
+5. **Finalize (with you)**
+   - Apply changes
+   - Clean up naming
+   - Merge intentionally
 
 ---
 
